@@ -2,6 +2,7 @@ from pathlib import Path
 from loguru import logger
 from tqdm import tqdm
 import pandas as pd
+import numpy as np
 import typer
 import pickle
 from sklearn.model_selection import train_test_split
@@ -55,8 +56,13 @@ def _predict(X, y, model_name, predictions_path):
     y_pred, y_proba = _validation(model, model_name, X_test, y_test)
 
     res_df = X_test.assign(true_target=y_test, predicted_target=y_pred)
+    # Rearrange the dataframe to exclude unnecessary columns
+    res_df = res_df.loc[:, ~res_df.columns.str.startswith('cg')]
+    numeric_cols = res_df.select_dtypes(include=[np.number]).columns
+    res_df[numeric_cols] = res_df[numeric_cols].astype('Int64')
     res_df['true_target'] = res_df['true_target'].map({0: 'mut', 1: 'wt'})
     res_df['predicted_target'] = res_df['predicted_target'].map({0: 'mut', 1: 'wt'})
+    # Save the dataframe in a CSV file
     res_df = res_df.reset_index(names=['Sample'])
     res_df.to_csv(predictions_path, index=False)
 
