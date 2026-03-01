@@ -86,7 +86,7 @@ def _plot_roc(fpr, tpr, auc, thresholds, model_name, output_path):
 
 @app.command()
 def main(
-    input_path: Path = PROCESSED_DATA_DIR / "features_top50.csv",
+    input_path: Path = PROCESSED_DATA_DIR / "features-top50.csv",
     output_path: Path = FIGURES_DIR / "plot.png",
     model: ModelName = typer.Option(ModelName.random_forest),
     target_name: str = typer.Option("Status", "--target_name"),

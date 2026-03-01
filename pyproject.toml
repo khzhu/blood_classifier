@@ -3,7 +3,7 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "blood_classifier"
+name = "blood-classifier"
 version = "0.0.1"
 description = """A non-invasive classifier predicts IDH mutation status in ctDNA methylation profiles
 analyzed with Illumina Infinium Epic arrays."""
@@ -16,18 +16,18 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License"
 ]
-requires-python = "~=3.10.0"
+requires-python = "~=3.12.2"
 
 
 [tool.ruff]
 line-length = 99
-src = ["blood_classifier"]
+src = ["classifier"]
 include = ["pyproject.toml", "classifier/**/*.py"]
 
 [tool.ruff.lint]
 extend-select = ["I"]  # Add import sorting
 
 [tool.ruff.lint.isort]
-known-first-party = ["blood_classifier"]
+known-first-party = ["classifier"]
 force-sort-within-sections = true
 

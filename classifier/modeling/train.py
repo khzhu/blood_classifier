@@ -18,9 +18,9 @@ app = typer.Typer()
 
 @app.command()
 def main(
-    features_path: Path = PROCESSED_DATA_DIR / "features_top50.csv",
+    features_path: Path = PROCESSED_DATA_DIR / "features-top50.csv",
     target_name: str = typer.Option("Status", "--target_name"),
-    pipeline_path: Path = MODELS_DIR / "lgbm_pipeline.pkl"
+    pipeline_path: Path = MODELS_DIR / "lgbm-pipeline.pkl"
 ):
     logger.info("Training LGBM...")
 

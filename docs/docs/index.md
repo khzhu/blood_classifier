@@ -1,4 +1,4 @@
-# blood_classifier documentation!
+# blood-classifier documentation!
 
 ## Description
 
@@ -10,7 +10,7 @@ The Makefile contains the central entry points for common tasks related to this 
 
 ### Syncing data to cloud storage
 
-* `make sync_data_up` will use `az storage blob upload-batch -d` to recursively sync files in `data/` up to `blood_classifier/data/`.
-* `make sync_data_down` will use `az storage blob upload-batch -d` to recursively sync files from `blood_classifier/data/` to `data/`.
+* `make sync_data_up` will use `az storage blob upload-batch -d` to recursively sync files in `data/` up to `blood-classifier/data/`.
+* `make sync_data_down` will use `az storage blob upload-batch -d` to recursively sync files from `blood-classifier/data/` to `data/`.
 
 

@@ -70,8 +70,8 @@ def _predict(X, y, model_name, predictions_path):
 def main(
         model: ModelName = typer.Option(ModelName.random_forest),
         target_name: str = typer.Option("Status", "--target_name"),
-        feature_path: Path = PROCESSED_DATA_DIR / "features_top50.csv",
-        predictions_path: Path = PROCESSED_DATA_DIR / "test_predictions.csv"
+        feature_path: Path = PROCESSED_DATA_DIR / "features-top50.csv",
+        predictions_path: Path = PROCESSED_DATA_DIR / "test-predictions.csv"
     ):
 
     logger.info(f"Performing inference for {model}...")

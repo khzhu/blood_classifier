@@ -18,7 +18,7 @@ def main(
     input_path: Path = PROCESSED_DATA_DIR / "all_features.csv",
     output_path: Path = PROCESSED_DATA_DIR / "features_top50.csv",
     target_name: str = typer.Option("Status", "--target_name"),
-    pipeline_path: Path = MODELS_DIR / "lgbm_pipeline.pkl"
+    pipeline_path: Path = MODELS_DIR / "lgbm-pipeline.pkl"
 ):
     logger.info("Feature Engineering...")
     with tqdm(total=3, desc="Feature Selection...") as pbar:

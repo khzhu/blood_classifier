@@ -25,9 +25,9 @@ MODEL_FULL_NAME = { "rf": "Random Forest",
                     "logreg": "Logistic Regression",
                     "xgboost": "Gradient Boosting"}
 
-PKL_PATH = { "rf": MODELS_DIR/ "rf_model.pkl",
-            "logreg": MODELS_DIR/ "logreg_model.pkl",
-            "xgboost": MODELS_DIR/ "xgboost_model.pkl"}
+PKL_PATH = { "rf": MODELS_DIR/ "rf-model.pkl",
+            "logreg": MODELS_DIR/ "logreg-model.pkl",
+            "xgboost": MODELS_DIR/ "xgboost-model.pkl"}
 
 # If tqdm is installed, configure loguru with tqdm.write
 # https://github.com/Delgan/loguru/issues/135

@@ -2,8 +2,8 @@
 # GLOBALS                                                                       #
 #################################################################################
 
-PROJECT_NAME = blood_classifier
-PYTHON_VERSION = 3.10
+PROJECT_NAME = blood-classifier
+PYTHON_VERSION = 3.12.2
 PYTHON_INTERPRETER = python
 
 #################################################################################
@@ -48,14 +48,14 @@ test:
 ## Download Data from storage system
 .PHONY: sync_data_down
 sync_data_down:
-	az storage blob download-batch -s blood_classifier/data/ \
+	az storage blob download-batch -s blood-classifier/data/ \
 		-d data/
 	
 
 ## Upload Data to storage system
 .PHONY: sync_data_up
 sync_data_up:
-	az storage blob upload-batch -d blood_classifier/data/ \
+	az storage blob upload-batch -d blood-classifier/data/ \
 		-s data/
 	
 
@@ -78,10 +78,35 @@ create_environment:
 
 
 ## Make dataset
-.PHONY: data
-data: requirements
-	$(PYTHON_INTERPRETER) blood_classifier/dataset.py
+.PHONY: dataset
+dataset:
+	$(PYTHON_INTERPRETER) -m classifier.dataset
 
+## Select features
+.PHONY: features
+features:
+	$(PYTHON_INTERPRETER) -m classifier.features --target_name "$(target_name)"
+
+## Train model
+.PHONY: train
+train:
+	$(PYTHON_INTERPRETER) -m classifier.modeling.train --target_name "$(target_name)"
+
+## Make predict
+.PHONY: predict
+predict:
+	$(PYTHON_INTERPRETER) -m classifier.modeling.predict \
+						  --model "$(model)" --target_name "$(target_name)"
+
+## Make plots
+.PHONY: plots
+plots:
+	$(PYTHON_INTERPRETER) -m classifier.plots \
+						  --model "$(model)" --target_name "$(target_name)"
+
+# Pipeline combines predict and plots
+pipeline: train predict plots
+	@echo "Pipeline finished!"
 
 #################################################################################
 # Self Documenting Commands                                                     #
