@@ -105,7 +105,7 @@ plots:
 						  --model "$(model)" --target_name "$(target_name)"
 
 # Pipeline combines predict and plots
-pipeline: train predict plots
+pipeline: dataset features train predict plots
 	@echo "Pipeline finished!"
 
 #################################################################################
